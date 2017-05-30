@@ -34,6 +34,34 @@ neuralNetwork <- setRefClass("neuralNetwork",
                                # training function
                                train = function(inputs_list, targets_list) {
                                  
+                                 # convert inputs to relevant matrix
+                                 inputs <- matrix(inputs_list)
+                                 targets <- matrix(targets_list)
+                                 
+                
+                                 
+                                 # hidden inputs
+                                 hidden_inputs <- crossprod(.self$weightshidden, inputs)
+                                 # hidden outputs
+                                 hidden_outputs <- .self$activation_function(hidden_inputs)
+                                 
+                                 # final inputs
+                                 final_inputs <- crossprod(.self$weightsoutput, hidden_outputs)
+                                 # final outputs
+                                 final_outputs <- .self$activation_function(final_inputs)
+                                 
+                                 # output errors (target-actual)
+                                 output_errors <- targets - final_outputs
+                                 
+                                 print(final_outputs)
+                                 
+                                 print(output_errors)
+                                 
+                                 hidden_errors <- crossprod(t(.self$weightsoutput), output_errors)
+                                 
+                                 .selfweightsoutput <- .selfweightsoutput + (learningrate *(crossprod((output_errors*final_inputs*(1-final_outputs)),  ))) 
+                                 print(hidden_errors)
+                                 
                                }
                             )
                              
@@ -43,3 +71,6 @@ neuralNetwork <- setRefClass("neuralNetwork",
 
 n <- neuralNetwork(inputnodes = 3, hiddennodes = 3, outputnodes = 3)
 n$initalize()
+
+n$train(c(1,2,3), c(1,2,3))
+
