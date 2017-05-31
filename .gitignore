@@ -1,3 +1,7 @@
 .Rproj.user
 .Rhistory
 .RData
+
+R/mnist_test.csv
+
+R/mnist_train.csv
