@@ -93,17 +93,9 @@ neural_network<- setRefClass("neuralNetwork",
   
 )
 
-# Display the digit using the array
-display_digit <- function(X){
-  m <- matrix(unlist(X),nrow = 28,byrow = T)
-  m <- t(apply(m, 2, rev))
-  image(m,col=grey.colors(255))
-}
 
-# Scale the input variables
-scale_input <- function(X) {
-  X.scale <- ((X/255.0)*0.99)+0.01
-}
+
+
 
 # Set working directory properly
 this.dir <- dirname(parent.frame(2)$ofile)

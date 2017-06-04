@@ -5,3 +5,7 @@
 R/mnist_test.csv
 
 R/mnist_train.csv
+
+data/mnist_train.csv
+
+data/mnist_test.csv
